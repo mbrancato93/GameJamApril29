@@ -26,7 +26,7 @@ func _on_Start_pressed():
 	get_tree().get_root().set_disable_input( true )
 	
 	debug.DEBUG( "Playing Transition!" )
-	var st = get_node( "Container/ScreneTransition/AnimationPlayer" )
+	var st = get_node( "Container/ScreenTransition/AnimationPlayer" )
 	st.play( "Fade" )
 	
 	debug.DEBUG( "Unlocking input!" )

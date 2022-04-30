@@ -1,51 +1,42 @@
 extends "res://src/humanoid.gd"
 
-var control = load( "res://src/controls.gd" ).new()
-
+enum Disposition { CASUAL, FRENZY, TRACKING, SATISFIED }
 enum State { DOWN, UP, LEFT, RIGHT }
-
 var curr_state = State.DOWN
+var curr_disposition = Disposition.TRACKING
 var anim_state_machine
 
-var inventory = []
+var path = []
+var threshold = 50
+var nav = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	yield( owner, "ready" )
+	nav = owner.nav
+	
 	anim_state_machine = get_node( "Sprite/AnimationTree" ).get( "parameters/playback" )
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	# update velocity information based on key presses
-	var controls = control.get_input_vector_strength()
-	
-	# print( controls )
-	
-	velocity[0] = ( controls[3] - controls[2] ) * Globals.resources[ "Player" ].speed
-	velocity[1] = ( controls[1] - controls[0] ) * Globals.resources[ "Player" ].speed
-	
-	update_state_machine()
+func _physics_process(delta):
+	if path.size() > 0 and curr_disposition == Disposition.TRACKING:
+		move_to_target()
 		
+	update_state_machine()
 	pass
 	
-func handle_collision( collisions ):
-	for col in collisions:
-		if( col.collider.get_groups().has( "customers" ) ):
-			print( "Collided with enemy" )
-			
-			# move to the next screen
-			get_parent().enemy_event( col.collider.name )
-			
-			break
+func move_to_target():
+	if global_position.distance_to( path[0] ) < threshold:
+		path.remove(0)
+	else:
+		var direction = global_position.direction_to( path[0] )
+		velocity = direction * Globals.resources[ "Customers" ].speed
+		velocity = move_and_slide( velocity )
 		
+func get_target_path( target_pos ):
+	path = nav.get_simple_path( global_position, target_pos, true )
 	
-func item_contact( name ):
-	if len( inventory ) >= Globals.resources[ "Player" ].max_inventory:
-		return false
-		
-	inventory.append( name )
-	return true
-
 func update_state_machine():
 	# right now, just check the velocity and update state accordingly
 	# prioritize the up,down direction for now
@@ -71,3 +62,4 @@ func trigger_state_update( new_state ):
 		anim_state_machine.travel( "left" )
 	if( new_state == State.RIGHT ):
 		anim_state_machine.travel( "right" )
+		

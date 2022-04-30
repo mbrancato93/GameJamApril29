@@ -43,13 +43,13 @@ margin_top = -590.0
 margin_right = 1014.0
 mouse_filter = 1
 
-[node name="ScreneTransition" type="ColorRect" parent="Container"]
+[node name="ScreenTransition" type="ColorRect" parent="Container"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
 color = Color( 0, 0, 0, 0 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Container/ScreneTransition"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Container/ScreenTransition"]
 anims/Fade = SubResource( 1 )
 anims/RESET = SubResource( 2 )
 

@@ -1,14 +1,16 @@
 {
 	"Scenes": {
 		"main-menu": {
-			"scene": "res://scenes/main_menu.tcsn",
+			"scene": "res://scenes/main_menu.tscn",
 			"next": "top-down"
 		},
 		"top-down": {
-			"scene": "res://scenes/top-down.tscn"
+			"scene": "res://scenes/top-down.tscn",
+			"next": "battle"
 		},
 		"battle": {
-			"scene": "res://scenes/battle.tcsn"
+			"scene": "res://scenes/battle.tscn",
+			"next": "top-down"
 		}
 	},
 	
@@ -30,6 +32,10 @@
 		},
 		"sign": {
 			"description": "Wet Floor Sign"
+		},
+		"generic_item": {
+			"description": "Generic Item",
+			"image": "res://Sprites/Basic_Item_Sprite.png"
 		}
 	},
 	
@@ -45,8 +51,21 @@
 		"down": "down",
 		"left": "left",
 		"right": "right",
-		"select": "select"
+		"select": "select",
+		"inventory": "inventory"
+	},
+	"Player": {
+		"speed": 100,
+		"max_inventory": 10
+	},
+	"Inventory": {
+		"button_scn": "res://objects/inventory_entry.tscn"
+	},
+	"Customers": {
+		"speed": 50
+	},
+	"Battle": {
+		"options": [ "Fight", "Flee", "Call Manager" ]
 	}
-	
 	
 }
