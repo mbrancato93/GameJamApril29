@@ -1,0 +1,52 @@
+{
+	"Scenes": {
+		"main-menu": {
+			"scene": "res://scenes/main_menu.tcsn",
+			"next": "top-down"
+		},
+		"top-down": {
+			"scene": "res://scenes/top-down.tscn"
+		},
+		"battle": {
+			"scene": "res://scenes/battle.tcsn"
+		}
+	},
+	
+	"Items": {
+		"coupon": {
+			"description": "Coupon"
+		},
+		"soda": {
+			"description": "soda"
+		},
+		"chips": {
+			"description": "Bag of Chips"
+		},
+		"flyer": {
+			"description": "Flyer"
+		},
+		"extinguisher": {
+			"description": "Fire Extinguisher"
+		},
+		"sign": {
+			"description": "Wet Floor Sign"
+		}
+	},
+	
+	"Moves": {
+		"attack": {
+			"description": "Attack",
+			"damage": 10,
+			"type": "normal"
+		}
+	},
+	"Controls": {
+		"up": "up",
+		"down": "down",
+		"left": "left",
+		"right": "right",
+		"select": "select"
+	}
+	
+	
+}
