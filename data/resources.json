@@ -16,26 +16,46 @@
 	
 	"Items": {
 		"coupon": {
-			"description": "Coupon"
+			"description": "Coupon",
+			"image": "res://Sprites/Coupon_Sprite_Item.png",
+			"x_scale": 0.5,
+			"y_scale": 0.5
 		},
 		"soda": {
-			"description": "soda"
+			"description": "soda",
+			"image": "res://Sprites/Soda_Sprite_Item.png",
+			"x_scale": 0.5,
+			"y_scale": 0.5
 		},
 		"chips": {
-			"description": "Bag of Chips"
+			"description": "Bag of Chips",
+			"image": "res://Sprites/BagOfChips_Sprite_Item.png",
+			"x_scale": 0.5,
+			"y_scale": 0.5
 		},
 		"flyer": {
-			"description": "Flyer"
+			"description": "Flyer",
+			"image": "res://Sprites/Flyer_Sprite_Item.png",
+			"x_scale": 0.5,
+			"y_scale": 0.5
 		},
 		"extinguisher": {
-			"description": "Fire Extinguisher"
+			"description": "Fire Extinguisher",
+			"image": "res://Sprites/Extinguisher_Sprite_Item.png",
+			"x_scale": 0.5,
+			"y_scale": 0.5
 		},
 		"sign": {
-			"description": "Wet Floor Sign"
+			"description": "Wet Floor Sign",
+			"image": "res://Sprites/WetFloorSign_Sprite_Item.png",
+			"x_scale": 0.5,
+			"y_scale": 0.5
 		},
 		"generic_item": {
 			"description": "Generic Item",
-			"image": "res://Sprites/Basic_Item_Sprite.png"
+			"image": "res://Sprites/Basic_Item_Sprite.png",
+			"x_scale": 0.5,
+			"y_scale": 0.5
 		}
 	},
 	
@@ -56,13 +76,52 @@
 	},
 	"Player": {
 		"speed": 100,
-		"max_inventory": 12
+		"max_inventory": 12,
+		"camera_zoom_x": 0.25,
+		"camera_zoom_y": 0.25,
+		"disable_diagonal": true,
+		"direction_precedence": "up/down",
+		"idle": "res://Sprites/Player_Sprite_Idle.png",
+		"walking": "res://Sprites/Player_Sprite_Walking.png"
 	},
 	"Inventory": {
 		"button_scn": "res://objects/inventory_entry.tscn"
 	},
 	"Customers": {
-		"speed": 50
+		"names": [ "Chad", "BigBoy", "Brainiac", "Karen" ],
+		"disable_diagonal": true,
+		"direction_precedence": "up/down",
+		"dispersion_threshold": 100
+	},
+	"Chad": {
+		"speed": 50,
+		"idle": "res://Sprites/Karen_Sprite_Idle.png",
+		"walking": "res://Sprites/Chad_Sprite_Walking.png"
+	},
+	"BigBoy": {
+		"speed": 200,
+		"idle": "res://Sprites/BigBoy_Sprite_Idle.png",
+		"walking": "res://Sprites/BigBoy_Sprite_Walking.png"
+	},
+	"Brainiac": {
+		"speed": 50,
+		"idle": "res://Sprites/Brainiac_Sprite_Idle.png",
+		"walking": "res://Sprites/Brainiac_Sprite_Walking.png"
+	},
+	"Granny": {
+		"speed": 25,
+		"idle": "res://Sprites/Granny_Sprite_Idle.png",
+		"walking": "res://Sprites/Granny_Sprite_Walking.png"
+	},
+	"Karen": {
+		"speed": 50,
+		"idle": "res://Sprites/Karen_Sprite_Idle.png",
+		"walking": "res://Sprites/Karen_Sprite_Walking.png"
+	},
+	"humanoid": {
+		"speed": 50,
+		"idle": "res://Sprites/Chad_Sprite_Idle.png",
+		"walking": "res://Sprites/Chad_Sprite_Walking.png"
 	},
 	"Battle": {
 		"options": [ "Skills", "Item", "Run" ]

@@ -2,10 +2,15 @@ extends Node
 
 var resources = {}
 var debug_levels = {}
+var mission = {}
 
 func _ready():
 	resources = load_list( "res://data/resources.json" )
+	assert( resources )
 	debug_levels = load_list( "res://data/debug_levels.json" )
+	assert( debug_levels )
+	mission = load_list( "res://data/mission.json" )
+	assert( mission )
 	
 	
 func load_list( file_name ):

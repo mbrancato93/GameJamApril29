@@ -2,5 +2,13 @@
     "main_menu": {
         "verbosity": 1,
         "period": 0
+    },
+    "player": {
+        "verbosity": 1,
+        "period": 100
+    },
+    "top-down": {
+        "verbosity": 1,
+        "period": 0
     }
 }

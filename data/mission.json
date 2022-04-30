@@ -1,0 +1,8 @@
+{
+    "Name": "Primary",
+    "NumEnemies": 5,
+    "Player": {
+        "entry_pos": -1,
+        "health": 100
+    }
+}

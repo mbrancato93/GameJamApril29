@@ -10,6 +10,7 @@ func init( name ):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	self.add_to_group( "items" )
 	pass # Replace with function body.
 
 
