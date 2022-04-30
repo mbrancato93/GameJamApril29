@@ -56,7 +56,7 @@
 	},
 	"Player": {
 		"speed": 100,
-		"max_inventory": 10
+		"max_inventory": 12
 	},
 	"Inventory": {
 		"button_scn": "res://objects/inventory_entry.tscn"
@@ -65,7 +65,12 @@
 		"speed": 50
 	},
 	"Battle": {
-		"options": [ "Fight", "Flee", "Call Manager" ]
+		"options": [ "Skills", "Item", "Run" ]
+	},
+
+	"Main_menu": {
+		"credits": "Developed by Kurt Rose and Michael Brancato",
+		"controls": "This is where the controls\n would be described"
 	}
 	
 }

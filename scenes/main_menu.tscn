@@ -72,11 +72,11 @@ margin_right = 246.0
 margin_bottom = 20.0
 text = "Start"
 
-[node name="Options" type="Button" parent="Container/MarginContainer/VBoxContainer"]
+[node name="Controls" type="Button" parent="Container/MarginContainer/VBoxContainer"]
 margin_top = 30.0
 margin_right = 246.0
 margin_bottom = 50.0
-text = "Options"
+text = "Controls"
 
 [node name="Credits" type="Button" parent="Container/MarginContainer/VBoxContainer"]
 margin_top = 60.0
@@ -90,7 +90,7 @@ margin_right = 246.0
 margin_bottom = 110.0
 text = "Quit"
 
-[node name="Options" type="Popup" parent="Container"]
+[node name="Popup" type="Popup" parent="Container"]
 visible = true
 anchor_left = 0.5
 anchor_top = 0.5
@@ -104,12 +104,23 @@ rect_clip_content = true
 mouse_filter = 1
 popup_exclusive = true
 
-[node name="ColorRect" type="ColorRect" parent="Container/Options"]
+[node name="ColorRect" type="ColorRect" parent="Container/Popup"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_clip_content = true
 
-[node name="MarginContainer" type="MarginContainer" parent="Container/Options"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Container/Popup/ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -256.5
+margin_top = -173.5
+margin_right = 256.5
+margin_bottom = 173.5
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="Container/Popup"]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 10.0
@@ -117,13 +128,13 @@ margin_top = -40.0
 margin_right = 76.0
 margin_bottom = -10.0
 
-[node name="Close" type="Button" parent="Container/Options/MarginContainer"]
+[node name="Close" type="Button" parent="Container/Popup/MarginContainer"]
 margin_right = 66.0
 margin_bottom = 30.0
 text = "Close"
 
 [connection signal="pressed" from="Container/MarginContainer/VBoxContainer/Start" to="." method="_on_Start_pressed"]
-[connection signal="pressed" from="Container/MarginContainer/VBoxContainer/Options" to="." method="_on_Options_pressed"]
+[connection signal="pressed" from="Container/MarginContainer/VBoxContainer/Controls" to="." method="_on_Options_pressed"]
 [connection signal="pressed" from="Container/MarginContainer/VBoxContainer/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="Container/MarginContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
-[connection signal="pressed" from="Container/Options/MarginContainer/Close" to="." method="_on_Popup_Close_pressed"]
+[connection signal="pressed" from="Container/Popup/MarginContainer/Close" to="." method="_on_Popup_Close_pressed"]

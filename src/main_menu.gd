@@ -43,7 +43,8 @@ func _on_Start_pressed():
 func _on_Options_pressed():
 	debug.DEBUG( "Options button pressed" )
 	
-	get_node( "Container/Options" ).popup()
+	get_node( "Container/Popup/ColorRect/RichTextLabel" ).text = Globals.resources[ "Main_menu" ][ "controls" ]
+	get_node( "Container/Popup" ).popup()
 	pass # Replace with function body.
 
 
@@ -55,9 +56,11 @@ func _on_Quit_pressed():
 
 func _on_Credits_pressed():
 	debug.DEBUG( "Credits button pressed" )
+	get_node( "Container/Popup/ColorRect/RichTextLabel" ).text = Globals.resources[ "Main_menu" ][ "credits" ]
+	get_node( "Container/Popup" ).popup()
 	pass # Replace with function body.
 
 func _on_Popup_Close_pressed():
-	if get_node( "Container/Options" ).is_visible(): 
-		get_node( "Container/Options" ).hide()
+	if get_node( "Container/Popup" ).is_visible(): 
+		get_node( "Container/Popup" ).hide()
 	pass # Replace with function body.
