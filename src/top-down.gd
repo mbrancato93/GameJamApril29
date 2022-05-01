@@ -11,53 +11,58 @@ func _ready():
 	debug.setVerb( Globals.debug_levels[ "top-down" ].verbosity )
 	debug.setPeriod( Globals.debug_levels[ "top-down" ].period )
 	
-	debug.DEBUG( "Running mission: %s" % Globals.mission.Name )
-	
+	if Globals.mission.Prime:
+		debug.DEBUG( "Priming mission: %s" % Globals.mission.Name )
+		prime()
+		Globals.mission.Prime = true
+	pass # Replace with function body.
+
+func prime():
 	var player = create_character( "Player", Vector2( 100, 100 ) )
 #	player.add_to_group( "player" )
 	
 	var map_limits = $Navigation2D/TileMap.get_used_rect()
 	var map_cellsize = $Navigation2D/TileMap.cell_size
 	self.add_child( player )
-	$Player.set_camera_BB( map_limits.position.x * map_cellsize.x, \
-				   map_limits.end.x * map_cellsize.x, \
-				   map_limits.position.y * map_cellsize.y, \
-				   map_limits.end.y * map_cellsize.y )
 	
-	print_debug( len( get_tree().get_nodes_in_group("player") ) )
+	var min_x = map_limits.position.x * map_cellsize.x
+	var max_x = map_limits.end.x * map_cellsize.x
+	var min_y = map_limits.position.y * map_cellsize.y
+	var max_y = map_limits.end.y * map_cellsize.y
+	$Player.set_camera_BB( min_x, \
+				  	 	   max_x, \
+				   		   min_y, \
+				   		   max_y )
 	
-	var curr_x = 50
-	var curr_y = 50
+	var placement = Vector2( floor(rand_range(min_x,max_x)),floor(rand_range(min_y,max_y)) )
 	# as a test, load all items
-	for name in Globals.resources[ "Items" ]:
-		var item = create_item( name, Vector2( curr_x, curr_y ) )
-#		item.add_to_group( "items" )
-		self.add_child( item )
-		curr_x += 32
-		curr_y += 0
-	print_debug( len( get_tree().get_nodes_in_group("items") ) )
+	for name in Globals.mission[ "Items" ]:
+		for _num in range( Globals.mission[ "Items" ][ name ].number ):
+			var item = create_item( name, placement )
+			self.add_child( item )
+			placement = Vector2( floor(rand_range(min_x,max_x)),floor(rand_range(min_y,max_y)) )
 	
 	# generate enemies in random positions given mission parameters
-	var num_enemies = Globals.mission.NumEnemies
+	var num_enemies = Globals.mission.Customers.number
 	debug.DEBUG( "Generating %d enemies" % num_enemies )
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	
-	curr_x = 50
-	curr_y = 200
+	placement = Vector2( floor(rand_range(min_x,max_x)),floor(rand_range(min_y,max_y)) )
 	for i in num_enemies:
 		var customer_name = Globals.resources[ "Customers" ].names[ rng.randi_range( 0, len(Globals.resources[ "Customers" ].names)-1 ) ]
 		debug.DEBUG( "Creating customer %s" % customer_name )
 		
-		var customer = create_character( customer_name, Vector2( curr_x, curr_y ) )
+		var customer = create_character( customer_name, placement )
 		customer.set_nav( $Navigation2D )
 		self.add_child( customer )
-		curr_x += 32
-		curr_y += 0
+		placement = Vector2( floor(rand_range(min_x,max_x)),floor(rand_range(min_y,max_y)) )
 		
-	$Timer.start()
-	pass # Replace with function body.
-
+	write_time( Globals.mission.Time )
+	$CanvasLayer/Container/ProgressBar.value = $Player.health
+	$Timer2.wait_time = Globals.mission.TimeStep[1]
+	$Timer2.start()
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -72,9 +77,44 @@ func enemy_event( enemy_id ):
 	
 func go_to_battle( customer_id ):
 	get_tree().paused = true
+	save_parameters()
 	var st = get_node( "Container/ScreenTransition/AnimationPlayer" )
 	st.play( "Fade" )
 #	get_tree().get_root().set_disable_input( false )
+	
+func save_parameters():
+	# player stats
+	Globals.mission.Player.health = $Player.health
+	Globals.mission.Player.position = $Player.global_position
+	Globals.mission.Player.state = $Player.curr_state
+	
+	# Time is logged throughout
+	
+	# Customers
+	var counter = 0
+	for customer in get_tree().get_nodes_in_group( "customers" ):
+		var dict = {
+			"name": customer.id,
+			"position": customer.global_position,
+			"state": customer.curr_state
+		}
+		Globals.mission.Customers[ "%d" % counter ] = dict
+		counter += 1
+		
+	# Items
+	
+	for item in get_tree().get_nodes_in_group( "items" ):
+#		Globals.mission.Items[ istem.type ].append( "item%d" % counter:.position = item.global_position
+		var dict = { "position": item.global_position }
+		Globals.mission.Items[ item.type ] = { "item%d" % counter: dict }
+		counter += 1
+	
+	# save for debugging purposes
+	var save_file = File.new()
+	save_file.open( "res://data/debug.json", File.WRITE )
+	save_file.store_line( to_json( Globals.mission ) )
+	save_file.close()
+	pass
 	
 func next_scene():
 	get_tree().paused = false
@@ -130,3 +170,22 @@ func create_character( type, pos: Vector2 ):
 	character.set_name( type )
 	character.name = type
 	return character
+
+func update_time( tm ):
+	Globals.mission.Time += tm
+
+func write_time( t ):
+	var hr = floor( t/100 )
+	var m = 60*( t - hr*100 ) / 100
+	$CanvasLayer/Container/TimeClock.text = "%2.0f:%02.0f" % [ hr, m ]
+	pass
+
+func _on_Timer2_timeout():
+	# time to update the time clock
+	update_time( Globals.mission.TimeStep[0] )
+	write_time( Globals.mission.Time )
+	if Globals.mission.Time == Globals.mission.EndTime:
+		get_tree().paused = true
+		$CanvasLayer/Inventory.popup()
+		$Timer2.stop()
+	pass # Replace with function body.

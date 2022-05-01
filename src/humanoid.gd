@@ -37,6 +37,8 @@ func _physics_process(delta):
 			var collision = get_slide_collision( i )
 			collisions.append( collision )
 		handle_collision( collisions )
+		
+	after_physics_process()
 	pass
 
 func handle_collision( collision ):
@@ -46,18 +48,22 @@ func handle_collision( collision ):
 func update_state_machine():
 	# right now, just check the velocity and update state accordingly
 	# prioritize the up,down direction for now
-	if( velocity[1] > 0 and curr_state != State.WALKING_DOWN ):
-		trigger_state_update( State.WALKING_DOWN )
-		curr_state = State.WALKING_DOWN
-	elif( velocity[1] < 0 and curr_state != State.WALKING_UP ):
-		trigger_state_update( State.WALKING_UP )
-		curr_state = State.WALKING_UP
-	elif( velocity[0] > 0 and curr_state != State.WALKING_RIGHT ):
-		trigger_state_update( State.WALKING_RIGHT )
-		curr_state = State.WALKING_RIGHT
-	elif( velocity[0] < 0 and curr_state != State.WALKING_LEFT ):
-		trigger_state_update( State.WALKING_LEFT )
-		curr_state = State.WALKING_LEFT
+	if velocity[1] > 0:
+		if curr_state != State.WALKING_DOWN:
+			trigger_state_update( State.WALKING_DOWN )
+			curr_state = State.WALKING_DOWN
+	elif velocity[1] < 0:
+		if curr_state != State.WALKING_UP:
+			trigger_state_update( State.WALKING_UP )
+			curr_state = State.WALKING_UP
+	elif velocity[0] > 0:
+		if curr_state != State.WALKING_RIGHT:
+			trigger_state_update( State.WALKING_RIGHT )
+			curr_state = State.WALKING_RIGHT
+	elif velocity[0] < 0:
+		if curr_state != State.WALKING_LEFT:
+			trigger_state_update( State.WALKING_LEFT )
+			curr_state = State.WALKING_LEFT
 	elif( velocity[0] == 0 and velocity[1] == 0 ):
 		if curr_state == State.WALKING_DOWN:
 			trigger_state_update( State.FACING_DOWN )
@@ -109,3 +115,7 @@ func anim_event( event_name ):
 	if curr_texture_path != tex:
 		$Sprite.texture = load( tex )
 		curr_texture_path = tex
+		
+func after_physics_process():
+	
+	pass

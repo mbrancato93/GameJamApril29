@@ -1,8 +1,35 @@
 {
     "Name": "Primary",
-    "NumEnemies": 5,
+
+
+    "Prime": true,
+    "Time": 700,
+    "EndTime": 1700,
+    "TimeStep": [ 25, 2 ],
     "Player": {
-        "entry_pos": -1,
         "health": 100
+    },
+    "Customers": {
+        "number": 2
+    },
+    "Items": {
+        "coupon": {
+            "number": 2
+        },
+        "soda": {
+            "number": 2
+        },
+        "chips": {
+            "number": 2
+        },
+        "flyer": {
+            "number": 2
+        },
+        "extinguisher": {
+            "number": 2
+        },
+        "sign": {
+            "number": 2
+        }
     }
 }
