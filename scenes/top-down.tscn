@@ -126,8 +126,8 @@ margin_left = 370.0
 margin_top = 218.0
 margin_right = 370.0
 margin_bottom = 218.0
-custom_constants/vseparation = 24
-custom_constants/hseparation = 24
+size_flags_horizontal = 15
+size_flags_vertical = 15
 columns = 4
 
 [node name="Container" type="Container" parent="CanvasLayer"]

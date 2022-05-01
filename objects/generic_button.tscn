@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://tilemaps/battle.tres" type="TileSet" id=1]
+[ext_resource path="res://src/generic_button.gd" type="Script" id=2]
+
+[sub_resource type="Theme" id=1]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0.0941176, 0.0941176, 0.0941176, 1 )
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=3]
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 1, 1, 1, 1 )
+
+[node name="Generic_Button" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -87.5
+margin_top = -31.5
+margin_right = 87.5
+margin_bottom = 31.5
+rect_min_size = Vector2( 40, 40 )
+theme = SubResource( 1 )
+script = ExtResource( 2 )
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -76.5
+margin_top = -29.5
+margin_right = 76.5
+margin_bottom = 29.5
+custom_styles/panel = SubResource( 2 )
+
+[node name="Button" type="Button" parent="PanelContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 148.0
+margin_bottom = 54.0
+custom_styles/hover = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+
+[node name="Label" type="Label" parent="PanelContainer/Button"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -75.0
+margin_top = -21.0
+margin_right = 75.0
+margin_bottom = 21.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+align = 1
+valign = 1
+
+[node name="TileMap" type="TileMap" parent="PanelContainer"]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+centered_textures = true
+format = 1
+
+[connection signal="pressed" from="PanelContainer/Button" to="." method="_on_Button_pressed"]
