@@ -63,8 +63,18 @@ func handle_collision( collisions ):
 		if( col.collider.get_groups().has( "customers" ) ):
 			print( "Collided with enemy" )
 			
+			var nm = col.collider.name
+			if "@" in nm:
+				var regex = RegEx.new()
+				regex.compile( "(?<=@)(.*?)(?=@)" )
+				nm = regex.search( nm )
+				if not nm:
+					nm = col.collider.name
+				else:
+					nm = nm[ 0 ]
+				
 			# move to the next screen
-			get_parent().enemy_event( col.collider.name )
+			get_parent().enemy_event( nm )
 			
 			break
 		

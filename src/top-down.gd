@@ -15,6 +15,8 @@ func _ready():
 		debug.DEBUG( "Priming mission: %s" % Globals.mission.Name )
 		prime()
 		Globals.mission.Prime = false
+	else:
+		load_subprime()
 	pass # Replace with function body.
 
 func prime():
@@ -73,7 +75,9 @@ func _process(delta):
 	pass
 	
 func enemy_event( enemy_id ):
-	go_to_battle( enemy_id )
+	if get_node( enemy_id ).curr_disposition != 3:
+		Globals.mission.CurrChallenger = enemy_id
+		go_to_battle( enemy_id )
 	
 func go_to_battle( customer_id ):
 	get_tree().paused = true
@@ -82,9 +86,55 @@ func go_to_battle( customer_id ):
 	st.play( "Fade" )
 #	get_tree().get_root().set_disable_input( false )
 	
+func load_subprime():
+	var player = create_character( "Player", Vector2( 100, 100 ) )
+	player.health = Globals.mission.Player.health
+	player.global_position = Globals.mission.Player.position
+	player.curr_state = Globals.mission.Player.state
+#	player.add_to_group( "player" )
+	
+	var map_limits = $Navigation2D/TileMap.get_used_rect()
+	var map_cellsize = $Navigation2D/TileMap.cell_size
+	self.add_child( player )
+	
+	var min_x = map_limits.position.x * map_cellsize.x
+	var max_x = map_limits.end.x * map_cellsize.x
+	var min_y = map_limits.position.y * map_cellsize.y
+	var max_y = map_limits.end.y * map_cellsize.y
+	$Player.set_camera_BB( min_x, \
+				  	 	   max_x, \
+				   		   min_y, \
+				   		   max_y )
+	
+	# aload the old items
+	for old_item in Globals.mission[ "Items" ]:
+		var item = create_item( Globals.mission[ "Items" ][ old_item as String ].type, Globals.mission[ "Items" ][ old_item as String ].position )
+		self.add_child( item )
+	
+	# generate enemies in their old positions
+	for cust in Globals.mission[ "Customers" ]:
+		var customer_name = Globals.mission[ "Customers" ][ cust ].name
+		debug.DEBUG( "Creating customer %s" % customer_name )
+		
+		var customer = create_character( customer_name, Globals.mission[ "Customers" ][ cust ].position )
+		customer.set_nav( $Navigation2D )
+		customer.curr_state = Globals.mission[ "Customers" ][ cust ].state
+		if customer.global_position.distance_to( $Player.global_position ) <= 30:
+			# this must be the person we engaged with
+			customer.curr_disposition = customer.Disposition.SATISFIED # SATISFIED
+		self.add_child( customer )
+		
+	write_time( Globals.mission.Time )
+	$CanvasLayer/Container/ProgressBar.value = $Player.health
+	$Timer2.wait_time = Globals.mission.TimeStep[1]
+	$Timer2.start()
+	pass
+	pass
+	
 func save_parameters():
 	# player stats
-	Globals.mission.Player.health = $Player.health
+#	Globals.mission.Player.health = $Player.health
+	Globals.mission.Player.health = 50
 	Globals.mission.Player.position = $Player.global_position
 	Globals.mission.Player.state = $Player.curr_state
 	
@@ -92,21 +142,25 @@ func save_parameters():
 	
 	# Customers
 	var counter = 0
+	Globals.mission.Customers = {}
 	for customer in get_tree().get_nodes_in_group( "customers" ):
 		var dict = {
 			"name": customer.id,
 			"position": customer.global_position,
 			"state": customer.curr_state
 		}
-		Globals.mission.Customers[ "%d" % counter ] = dict
+		Globals.mission.Customers[ "customer%d" % counter ] = dict
 		counter += 1
 		
 	# Items
-	
+	Globals.mission.Items = {}
 	for item in get_tree().get_nodes_in_group( "items" ):
 #		Globals.mission.Items[ istem.type ].append( "item%d" % counter:.position = item.global_position
-		var dict = { "position": item.global_position }
-		Globals.mission.Items[ item.type ] = { "item%d" % counter: dict }
+		var dict = { 
+			"position": item.global_position,
+			"type": item.type
+		}
+		Globals.mission.Items[ "item%d" % counter ] = dict
 		counter += 1
 	
 	# save for debugging purposes

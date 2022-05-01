@@ -61,9 +61,36 @@
 	
 	"Moves": {
 		"attack": {
-			"description": "Attack",
+			"name": "Attack",
 			"damage": 10,
-			"type": "normal"
+			"type": "normal",
+			"description": "Something about the attack",
+			"flavor": "ruthlessly attacks!"
+		},
+		"distract": {
+			"name": "Distract",
+			"damage": 10
+		},
+		"ignore": {
+			"name": "Ignore",
+			"damage": 10
+		},
+		"apologize": {
+			"name": "Apologize",
+			"damage": 10
+		},
+		"swing_purse": {
+			"name": "Swing Purse",
+			"damage": 10
+		},
+		"life_story": {
+			"name": "Life Story",
+			"flavor": "bores you to the death with her life story!",
+			"damage": 10
+		},
+		"mansplain": {
+			"name": "Man-splain",
+			"damage": 10
 		}
 	},
 	"Controls": {
@@ -82,14 +109,15 @@
 		"disable_diagonal": false,
 		"direction_precedence": "left/right",
 		"idle": "res://Sprites/Player_Sprite_Idle.png",
-		"walking": "res://Sprites/Player_Sprite_Walking.png"
+		"walking": "res://Sprites/Player_Sprite_Walking.png",
+		"moves": [ "attack", "distract", "ignore", "apologize" ]
 	},
 	"Inventory": {
 		"button_scn": "res://objects/inventory_entry.tscn"
 	},
 	"Customers": {
 		"names": [ "Chad", "BigBoy", "Brainiac", "Karen", "Granny" ],
-		"disable_diagonal": false,
+		"disable_diagonal": true,
 		"direction_precedence": "up/down",
 		"dispersion_threshold": 100,
 		"show_detection": false,
@@ -99,45 +127,137 @@
 		"speed": 50,
 		"idle": "res://Sprites/Chad_Sprite_Idle.png",
 		"walking": "res://Sprites/Chad_Sprite_Walking.png",
-		"attention": 5
+		"battle": "res://Sprites/Chad_Battle_Sprite.png",
+		"attention": 5,
+		"scripts": {
+			"opening": {
+				"0": {
+					"0": "One thing",
+					"1": "Another thing"
+				}
+			},
+			"closing": {
+				"0": {
+					"0": "Good byte",
+					"1": "For now"
+				}
+			}
+		}
 	},
 	"BigBoy": {
 		"speed": 50,
 		"idle": "res://Sprites/BigBoy_Sprite_Idle.png",
 		"walking": "res://Sprites/BigBoy_Sprite_Walking.png",
-		"attention": 5
+		"battle": "res://Sprites/BigBoy_Battle_Sprite.png",
+		"attention": 5,
+		"scripts": {
+			"opening": {
+				"0": {
+					"0": "One thing",
+					"1": "Another thing"
+				}
+			},
+			"closing": {
+				"0": {
+					"0": "Good byte",
+					"1": "For now"
+				}
+			}
+		}
 	},
 	"Brainiac": {
 		"speed": 50,
 		"idle": "res://Sprites/Brainiac_Sprite_Idle.png",
 		"walking": "res://Sprites/Brainiac_Sprite_Walking.png",
-		"attention": 5
+		"battle": "res://Sprites/Brainiac_Battle_Sprite.png",
+		"attention": 5,
+		"scripts": {
+			"opening": {
+				"0": {
+					"0": "One thing",
+					"1": "Another thing"
+				}
+			},
+			"closing": {
+				"0": {
+					"0": "Good byte",
+					"1": "For now"
+				}
+			}
+		}
 	},
 	"Granny": {
 		"speed": 25,
 		"idle": "res://Sprites/Granny_Sprite_Idle.png",
 		"walking": "res://Sprites/Granny_Sprite_Walking.png",
-		"attention": 10
+		"battle": "res://Sprites/Granny_Battle_Sprite.png",
+		"attention": 10,
+		"moves": [ "swing_purse", "life_story" ],
+		"scripts": {
+			"opening": {
+				"0": {
+					"0": "One thing",
+					"1": "Another thing"
+				}
+			},
+			"closing": {
+				"0": {
+					"0": "Good byte",
+					"1": "For now"
+				}
+			}
+		}
 	},
 	"Karen": {
 		"speed": 50,
 		"idle": "res://Sprites/Karen_Sprite_Idle.png",
 		"walking": "res://Sprites/Karen_Sprite_Walking.png",
-		"attention": 5
+		"battle": "res://Sprites/Karen_Battle_Sprite.png",
+		"attention": 5,
+		"scripts": {
+			"opening": {
+				"0": {
+					"0": "One thing",
+					"1": "Another thing"
+				}
+			},
+			"closing": {
+				"0": {
+					"0": "Good byte",
+					"1": "For now"
+				}
+			}
+		}
 	},
 	"humanoid": {
 		"speed": 50,
 		"idle": "res://Sprites/Chad_Sprite_Idle.png",
 		"walking": "res://Sprites/Chad_Sprite_Walking.png",
-		"attention": 5
+		"battle": "res://Sprites/Chad_Battle_Sprite.png",
+		"attention": 5,
+		"scripts": {
+			"opening": {
+				"0": {
+					"0": "One thing",
+					"1": "Another thing"
+				}
+			},
+			"closing": {
+				"0": {
+					"0": "Good byte",
+					"1": "For now"
+				}
+			}
+		}
 	},
 	"Battle": {
-		"options": [ "Skills", "Item", "Run", "Other" ]
+		"options": [ "Skills", "Item", "Run", "Other" ],
+		"text_scroll_timeout": 0.05,
+		"selector_timeout": 0.4
 	},
 
 	"Main_menu": {
 		"credits": "Developed by Kurt Rose and Michael Brancato",
 		"controls": "This is where the controls\n would be described"
 	}
-	
 }

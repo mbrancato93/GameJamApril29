@@ -41,7 +41,10 @@ func set_nav( n ):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if path.size() > 0 and curr_disposition == Disposition.TRACKING:
+	if curr_disposition == Disposition.SATISFIED:
+		velocity = Vector2( 0, 0 )
+		return
+	elif path.size() > 0 and curr_disposition == Disposition.TRACKING:
 		move_to_target()
 	elif curr_disposition == Disposition.CASUAL:
 		# dispersion: loop through elements in customer group
@@ -64,11 +67,7 @@ func _process(delta):
 					velocity = velocity.rotated( PI/2 )
 				elif( rnd >= 0.5*(1-Globals.resources[ "Customers" ].random_walk_affinity)+Globals.resources[ "Customers" ].random_walk_affinity ):
 					velocity = velocity.rotated( -PI/2 )
-	elif curr_disposition == Disposition.SATISFIED:
-		# do nothing
-		velocity = Vector2( 0, 0 )
-		pass
-		
+
 	var orientation_angle = atan2( velocity[1], velocity[0] )
 	$VIEW_AREA.rotation = orientation_angle
 	
@@ -114,11 +113,11 @@ func item_contact( ig ):
 	return false
 	
 func body_found( body ):
-	if body.name == "Player":
+	if body.name == "Player" and curr_disposition != Disposition.SATISFIED:
 		curr_disposition = Disposition.TRACKING
 
 func body_lost( body ):
-	if body.name == "Player":
+	if body.name == "Player" and curr_disposition != Disposition.SATISFIED:
 		# ensure disposition is still TRACKING
 		curr_disposition = Disposition.TRACKING
 		
