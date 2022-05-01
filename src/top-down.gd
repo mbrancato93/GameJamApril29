@@ -14,7 +14,7 @@ func _ready():
 	if Globals.mission.Prime:
 		debug.DEBUG( "Priming mission: %s" % Globals.mission.Name )
 		prime()
-		Globals.mission.Prime = true
+		Globals.mission.Prime = false
 	pass # Replace with function body.
 
 func prime():

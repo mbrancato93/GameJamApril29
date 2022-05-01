@@ -1,7 +1,6 @@
 extends Node2D
 
 var debug = load( "res://src/debug.gd" ).new()
-
 var control = load( "res://src/controls.gd" ).new()
 
 var menu_selection = 0
@@ -13,7 +12,6 @@ func _ready():
 	debug.setVerb( Globals.debug_levels[ "main_menu" ].verbosity )
 	debug.setPeriod( Globals.debug_levels[ "main_menu" ].period )
 	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

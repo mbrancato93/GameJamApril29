@@ -117,7 +117,7 @@
 		"speed": 25,
 		"idle": "res://Sprites/Granny_Sprite_Idle.png",
 		"walking": "res://Sprites/Granny_Sprite_Walking.png",
-		"attention": 5
+		"attention": 10
 	},
 	"Karen": {
 		"speed": 50,
@@ -132,7 +132,7 @@
 		"attention": 5
 	},
 	"Battle": {
-		"options": [ "Skills", "Item", "Run" ]
+		"options": [ "Skills", "Item", "Run", "Other" ]
 	},
 
 	"Main_menu": {
