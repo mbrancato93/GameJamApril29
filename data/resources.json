@@ -79,8 +79,8 @@
 		"max_inventory": 12,
 		"camera_zoom_x": 0.25,
 		"camera_zoom_y": 0.25,
-		"disable_diagonal": true,
-		"direction_precedence": "up/down",
+		"disable_diagonal": false,
+		"direction_precedence": "left/right",
 		"idle": "res://Sprites/Player_Sprite_Idle.png",
 		"walking": "res://Sprites/Player_Sprite_Walking.png"
 	},
@@ -88,40 +88,48 @@
 		"button_scn": "res://objects/inventory_entry.tscn"
 	},
 	"Customers": {
-		"names": [ "Chad", "BigBoy", "Brainiac", "Karen" ],
-		"disable_diagonal": true,
+		"names": [ "Chad", "BigBoy", "Brainiac", "Karen", "Granny" ],
+		"disable_diagonal": false,
 		"direction_precedence": "up/down",
-		"dispersion_threshold": 100
+		"dispersion_threshold": 100,
+		"show_detection": false,
+		"random_walk_affinity": 0.995
 	},
 	"Chad": {
 		"speed": 50,
-		"idle": "res://Sprites/Karen_Sprite_Idle.png",
-		"walking": "res://Sprites/Chad_Sprite_Walking.png"
+		"idle": "res://Sprites/Chad_Sprite_Idle.png",
+		"walking": "res://Sprites/Chad_Sprite_Walking.png",
+		"attention": 5
 	},
 	"BigBoy": {
-		"speed": 200,
+		"speed": 50,
 		"idle": "res://Sprites/BigBoy_Sprite_Idle.png",
-		"walking": "res://Sprites/BigBoy_Sprite_Walking.png"
+		"walking": "res://Sprites/BigBoy_Sprite_Walking.png",
+		"attention": 5
 	},
 	"Brainiac": {
 		"speed": 50,
 		"idle": "res://Sprites/Brainiac_Sprite_Idle.png",
-		"walking": "res://Sprites/Brainiac_Sprite_Walking.png"
+		"walking": "res://Sprites/Brainiac_Sprite_Walking.png",
+		"attention": 5
 	},
 	"Granny": {
 		"speed": 25,
 		"idle": "res://Sprites/Granny_Sprite_Idle.png",
-		"walking": "res://Sprites/Granny_Sprite_Walking.png"
+		"walking": "res://Sprites/Granny_Sprite_Walking.png",
+		"attention": 5
 	},
 	"Karen": {
 		"speed": 50,
 		"idle": "res://Sprites/Karen_Sprite_Idle.png",
-		"walking": "res://Sprites/Karen_Sprite_Walking.png"
+		"walking": "res://Sprites/Karen_Sprite_Walking.png",
+		"attention": 5
 	},
 	"humanoid": {
 		"speed": 50,
 		"idle": "res://Sprites/Chad_Sprite_Idle.png",
-		"walking": "res://Sprites/Chad_Sprite_Walking.png"
+		"walking": "res://Sprites/Chad_Sprite_Walking.png",
+		"attention": 5
 	},
 	"Battle": {
 		"options": [ "Skills", "Item", "Run" ]

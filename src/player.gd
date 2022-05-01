@@ -3,6 +3,7 @@ extends humanoid
 var control = load( "res://src/controls.gd" ).new()
 var inventory = []
 var camera = null
+var health = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,6 +25,9 @@ func _ready():
 	camera.set_script( load( "res://src/player_cam.gd" ) )
 	camera.name = "Camera"
 	self.add_child( camera )
+	
+	
+	health = Globals.mission.Player.health
 	pass # Replace with function body.
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -43,7 +47,7 @@ func _process(delta):
 		if Globals.resources[ "Player" ].direction_precedence == "up/down":
 			if velocity[1] != 0:
 				velocity[0] = 0
-		elif Globals.resources[ "Player" ].direction_precendence == "left/right":
+		elif Globals.resources[ "Player" ].direction_precedence == "left/right":
 			if velocity[0] != 0:
 				velocity[1] = 0 
 
