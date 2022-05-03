@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/main_menu.gd" type="Script" id=1]
 [ext_resource path="res://tilemaps/RetailRumble_Title.png" type="Texture" id=2]
+[ext_resource path="res://objects/generic_button.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Fade"
@@ -33,6 +34,17 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 0 ) ]
 }
 
+[sub_resource type="StyleBoxFlat" id=3]
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [node name="StartMenu" type="Node2D"]
 position = Vector2( 0, 600 )
 script = ExtResource( 1 )
@@ -57,39 +69,61 @@ anims/RESET = SubResource( 2 )
 [node name="MarginContainer" type="MarginContainer" parent="Container"]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 50.0
-margin_top = -142.0
-margin_right = 296.0
+margin_left = 100.0
+margin_top = -180.0
+margin_right = 312.0
+margin_bottom = 100.0
 mouse_filter = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Container/MarginContainer"]
-margin_right = 246.0
-margin_bottom = 142.0
+[node name="VBoxContainer" type="GridContainer" parent="Container/MarginContainer"]
+margin_right = 230.0
+margin_bottom = 280.0
 mouse_filter = 0
-custom_constants/separation = 10
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/vseparation = 50
+custom_constants/hseparation = 150
+columns = 2
 
-[node name="Start" type="Button" parent="Container/MarginContainer/VBoxContainer"]
-margin_right = 246.0
-margin_bottom = 20.0
-text = "Start"
+[node name="Start" parent="Container/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
 
-[node name="Controls" type="Button" parent="Container/MarginContainer/VBoxContainer"]
-margin_top = 30.0
-margin_right = 246.0
-margin_bottom = 50.0
-text = "Controls"
+[node name="Controls" parent="Container/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 190.0
+margin_top = 0.0
+margin_right = 230.0
+margin_bottom = 40.0
 
-[node name="Credits" type="Button" parent="Container/MarginContainer/VBoxContainer"]
-margin_top = 60.0
-margin_right = 246.0
-margin_bottom = 80.0
-text = "Credits"
-
-[node name="Quit" type="Button" parent="Container/MarginContainer/VBoxContainer"]
+[node name="Credits" parent="Container/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
 margin_top = 90.0
-margin_right = 246.0
-margin_bottom = 110.0
-text = "Quit"
+margin_right = 40.0
+margin_bottom = 130.0
+
+[node name="Close" parent="Container/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 190.0
+margin_top = 90.0
+margin_right = 230.0
+margin_bottom = 130.0
 
 [node name="Popup" type="Popup" parent="Container"]
 visible = true
@@ -105,21 +139,27 @@ rect_clip_content = true
 mouse_filter = 1
 popup_exclusive = true
 
-[node name="ColorRect" type="ColorRect" parent="Container/Popup"]
+[node name="PanelContainer" type="PanelContainer" parent="Container/Popup"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_clip_content = true
+custom_styles/panel = SubResource( 3 )
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Container/Popup/ColorRect"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -256.5
-margin_top = -173.5
-margin_right = 256.5
-margin_bottom = 173.5
-custom_colors/default_color = Color( 0, 0, 0, 1 )
+[node name="VBoxContainer" type="VBoxContainer" parent="Container/Popup/PanelContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 772.0
+margin_bottom = 356.0
+
+[node name="Title" type="Label" parent="Container/Popup/PanelContainer/VBoxContainer"]
+margin_right = 762.0
+margin_bottom = 14.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Container/Popup/PanelContainer/VBoxContainer"]
+margin_top = 18.0
+margin_right = 762.0
+margin_bottom = 33.0
+fit_content_height = true
+scroll_following = true
 
 [node name="MarginContainer" type="MarginContainer" parent="Container/Popup"]
 anchor_top = 1.0
@@ -140,8 +180,13 @@ scale = Vector2( 0.799023, 0.83125 )
 z_index = -1
 texture = ExtResource( 2 )
 
-[connection signal="pressed" from="Container/MarginContainer/VBoxContainer/Start" to="." method="_on_Start_pressed"]
-[connection signal="pressed" from="Container/MarginContainer/VBoxContainer/Controls" to="." method="_on_Options_pressed"]
-[connection signal="pressed" from="Container/MarginContainer/VBoxContainer/Credits" to="." method="_on_Credits_pressed"]
-[connection signal="pressed" from="Container/MarginContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="Container/MarginContainer/VBoxContainer/Start/PanelContainer/Button" to="." method="_on_Button_pressed" binds= [ "start" ]]
+[connection signal="pressed" from="Container/MarginContainer/VBoxContainer/Controls/PanelContainer/Button" to="." method="_on_Button_pressed" binds= [ "controls" ]]
+[connection signal="pressed" from="Container/MarginContainer/VBoxContainer/Credits/PanelContainer/Button" to="." method="_on_Button_pressed" binds= [ "credits" ]]
+[connection signal="pressed" from="Container/MarginContainer/VBoxContainer/Close/PanelContainer/Button" to="." method="_on_Button_pressed" binds= [ "close" ]]
 [connection signal="pressed" from="Container/Popup/MarginContainer/Close" to="." method="_on_Popup_Close_pressed"]
+
+[editable path="Container/MarginContainer/VBoxContainer/Start"]
+[editable path="Container/MarginContainer/VBoxContainer/Controls"]
+[editable path="Container/MarginContainer/VBoxContainer/Credits"]
+[editable path="Container/MarginContainer/VBoxContainer/Close"]

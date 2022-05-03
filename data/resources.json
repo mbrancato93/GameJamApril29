@@ -2,7 +2,16 @@
 	"Scenes": {
 		"main-menu": {
 			"scene": "res://scenes/main_menu.tscn",
-			"next": "top-down"
+			"next": "battle",
+			"main_font": {
+				"font_path": "res://fonts/OldSchoolAdventures_12pt.tres"
+			},
+			"title-font": {
+				"font_path": "res://fonts/OldSchoolAdventures_24pt.tres"
+			},
+			"button_font": {
+				"font_path": "res://fonts/OldSchoolAdventures_12pt.tres"
+			}
 		},
 		"top-down": {
 			"scene": "res://scenes/top-down.tscn",
@@ -10,7 +19,19 @@
 		},
 		"battle": {
 			"scene": "res://scenes/battle.tscn",
-			"next": "top-down"
+			"next": "top-down",
+			"main_font": {
+				"font_path": "res://fonts/OldSchoolAdventures_12pt.tres"
+			},
+			"button_font": {
+				"font_path": "res://fonts/OldSchoolAdventures_12pt.tres"
+			}
+		},
+		"default": {
+			"main_font": null,
+			"button_font": {
+				"font_path": "res://fonts/OldSchoolAdventures_24pt.tres"
+			}
 		}
 	},
 	
@@ -65,32 +86,72 @@
 			"damage": 10,
 			"type": "normal",
 			"description": "Something about the attack",
-			"flavor": "ruthlessly attacks!"
+			"flavor": "ruthlessly attacks!",
+			"hit_chance": 0.75
 		},
 		"distract": {
 			"name": "Distract",
-			"damage": 10
+			"damage": 60,
+			"type": "normal",
+			"description": "Something about the attack",
+			"flavor": "ruthlessly attacks!",
+			"hit_chance": 0.75
 		},
 		"ignore": {
 			"name": "Ignore",
-			"damage": 10
+			"damage": 10,
+			"type": "normal",
+			"description": "Something about the attack",
+			"flavor": "ruthlessly attacks!",
+			"hit_chance": 0.75
 		},
 		"apologize": {
 			"name": "Apologize",
-			"damage": 10
+			"damage": 10,
+			"type": "normal",
+			"description": "Something about the attack",
+			"flavor": "ruthlessly attacks!",
+			"hit_chance": 0.75
 		},
 		"swing_purse": {
 			"name": "Swing Purse",
-			"damage": 10
+			"damage": 10,
+			"type": "normal",
+			"description": "Something about the attack",
+			"flavor": "ruthlessly attacks!",
+			"hit_chance": 0.75
 		},
 		"life_story": {
 			"name": "Life Story",
-			"flavor": "bores you to the death with her life story!",
-			"damage": 10
+			"damage": 10,
+			"type": "normal",
+			"description": "Something about the attack",
+			"flavor": "ruthlessly attacks!",
+			"hit_chance": 0.75
 		},
 		"mansplain": {
 			"name": "Man-splain",
-			"damage": 10
+			"damage": 10,
+			"type": "normal",
+			"description": "Something about the attack",
+			"flavor": "ruthlessly attacks!",
+			"hit_chance": 0.75
+		},
+		"sumo": {
+			"name": "Sumo",
+			"damage": 10,
+			"type": "normal",
+			"description": "Something about the attack",
+			"flavor": "ruthlessly attacks!",
+			"hit_chance": 0.75
+		},
+		"ask_for_manager": {
+			"name": "Ask for Manager",
+			"damage": 10,
+			"type": "normal",
+			"description": "Something about the attack",
+			"flavor": "ruthlessly attacks!",
+			"hit_chance": 0.75
 		}
 	},
 	"Controls": {
@@ -103,7 +164,7 @@
 	},
 	"Player": {
 		"speed": 100,
-		"max_inventory": 12,
+		"max_inventory": 8,
 		"camera_zoom_x": 0.25,
 		"camera_zoom_y": 0.25,
 		"disable_diagonal": false,
@@ -129,6 +190,8 @@
 		"walking": "res://Sprites/Chad_Sprite_Walking.png",
 		"battle": "res://Sprites/Chad_Battle_Sprite.png",
 		"attention": 5,
+		"moves": [ "attack" ],
+		"names": [ "Chad" ],
 		"scripts": {
 			"opening": {
 				"0": {
@@ -150,6 +213,8 @@
 		"walking": "res://Sprites/BigBoy_Sprite_Walking.png",
 		"battle": "res://Sprites/BigBoy_Battle_Sprite.png",
 		"attention": 5,
+		"moves": [ "sumo", "attack" ],
+		"names": [ "Little Tony" ],
 		"scripts": {
 			"opening": {
 				"0": {
@@ -171,6 +236,8 @@
 		"walking": "res://Sprites/Brainiac_Sprite_Walking.png",
 		"battle": "res://Sprites/Brainiac_Battle_Sprite.png",
 		"attention": 5,
+		"moves": [ "mansplain" ],
+		"names": [ "Alfred", "Desmond" ],  
 		"scripts": {
 			"opening": {
 				"0": {
@@ -193,6 +260,7 @@
 		"battle": "res://Sprites/Granny_Battle_Sprite.png",
 		"attention": 10,
 		"moves": [ "swing_purse", "life_story" ],
+		"names": [ "Ethel", "Agnes", "Dorothy" ],
 		"scripts": {
 			"opening": {
 				"0": {
@@ -214,6 +282,8 @@
 		"walking": "res://Sprites/Karen_Sprite_Walking.png",
 		"battle": "res://Sprites/Karen_Battle_Sprite.png",
 		"attention": 5,
+		"moves": [ "ask_for_manager" ],
+		"names": [ "Karen" ],
 		"scripts": {
 			"opening": {
 				"0": {
@@ -235,6 +305,7 @@
 		"walking": "res://Sprites/Chad_Sprite_Walking.png",
 		"battle": "res://Sprites/Chad_Battle_Sprite.png",
 		"attention": 5,
+		"moves": [ "attack" ],
 		"scripts": {
 			"opening": {
 				"0": {
@@ -250,14 +321,28 @@
 			}
 		}
 	},
+	"Manager": {
+		"battle": "res://Sprites/Manager_Battle_Sprite.png",
+		"names": [ "Manager" ],
+		"scripts": {
+			"opening": {
+				"0": {
+					"0": "This is where we can describe the purpose of the game...",
+					"1": "Give motivation to who we are and what we are doing...",
+					"2": "This is the manager telling you this."
+				}
+			}
+		}
+	},
 	"Battle": {
-		"options": [ "Skills", "Item", "Run", "Other" ],
+		"options": [ "Skills", "Item", "Run" ],
 		"text_scroll_timeout": 0.05,
-		"selector_timeout": 0.4
+		"selector_timeout": 0.4,
+		"additional_inventory_scaling": [ 3, 3 ]
 	},
 
 	"Main_menu": {
-		"credits": "Developed by Kurt Rose and Michael Brancato",
-		"controls": "This is where the controls\n would be described"
+		"credits": "\n\nDeveloped by Kurt Rose and Michael Brancato",
+		"controls": "\n->Motion: WASD/Arrow Keys\n->Select: Space/Enter/Click\n->Inventory: i"
 	}
 }

@@ -1,36 +1,39 @@
 {
-    "Name": "Primary",
-
-
-    "Prime": true,
-    "Time": 700,
-    "EndTime": 1700,
-    "TimeStep": [ 25, 2 ],
-    "CurrChallenger": "Granny",
-    "Player": {
-        "health": 100
+  "Name": "Primary",
+  "Prime": true,
+  "Time": 700,
+  "EndTime": 1700,
+  "TimeStep": [
+    25,
+    2
+  ],
+  "CurrChallenger": "Manager",
+  "isBattle": false,
+  "Player": {
+    "health": 100
+  },
+  "Customers": {
+    "number": 2
+  },
+  "Items": {
+    "coupon": {
+      "number": 2
     },
-    "Customers": {
-        "number": 2
+    "soda": {
+      "number": 2
     },
-    "Items": {
-        "coupon": {
-            "number": 2
-        },
-        "soda": {
-            "number": 2
-        },
-        "chips": {
-            "number": 2
-        },
-        "flyer": {
-            "number": 2
-        },
-        "extinguisher": {
-            "number": 2
-        },
-        "sign": {
-            "number": 2
-        }
+    "chips": {
+      "number": 2
+    },
+    "flyer": {
+      "number": 2
+    },
+    "extinguisher": {
+      "number": 2
+    },
+    "sign": {
+      "number": 2
     }
+  },
+  "Inventory": {}
 }

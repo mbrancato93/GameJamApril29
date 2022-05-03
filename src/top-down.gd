@@ -133,10 +133,10 @@ func load_subprime():
 	
 func save_parameters():
 	# player stats
-#	Globals.mission.Player.health = $Player.health
-	Globals.mission.Player.health = 50
+	Globals.mission.Player.health = $Player.health
 	Globals.mission.Player.position = $Player.global_position
 	Globals.mission.Player.state = $Player.curr_state
+	Globals.mission.isBattle = true
 	
 	# Time is logged throughout
 	
@@ -152,7 +152,7 @@ func save_parameters():
 		Globals.mission.Customers[ "customer%d" % counter ] = dict
 		counter += 1
 		
-	# Items
+	# Items on map
 	Globals.mission.Items = {}
 	for item in get_tree().get_nodes_in_group( "items" ):
 #		Globals.mission.Items[ istem.type ].append( "item%d" % counter:.position = item.global_position
@@ -162,6 +162,9 @@ func save_parameters():
 		}
 		Globals.mission.Items[ "item%d" % counter ] = dict
 		counter += 1
+		
+	# current inventory
+	Globals.mission.Inventory = $Player.inventory
 	
 	# save for debugging purposes
 	var save_file = File.new()

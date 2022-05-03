@@ -1,11 +1,12 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/battle.gd" type="Script" id=1]
 [ext_resource path="res://tilemaps/battle.tres" type="TileSet" id=2]
-[ext_resource path="res://objects/battle_entry.tscn" type="PackedScene" id=3]
+[ext_resource path="res://fonts/OldSchoolAdventures_12pt.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Sprites/Player_Battle_Sprite.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/StaminaBar_Sprite.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Karen_Battle_Sprite.png" type="Texture" id=6]
+[ext_resource path="res://objects/generic_button.tscn" type="PackedScene" id=7]
 
 [sub_resource type="DynamicFontData" id=2]
 font_path = "res://fonts/OldSchoolAdventures-42j9.ttf"
@@ -68,7 +69,6 @@ margin_right = 472.0
 margin_bottom = 60.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 3 )
-text = "asdfasdfasdf"
 autowrap = true
 
 [node name="Blinker" type="Polygon2D" parent="Background/InfoBar"]
@@ -99,55 +99,55 @@ anchor_bottom = 1.0
 theme = SubResource( 1 )
 
 [node name="GridContainer" type="GridContainer" parent="Background/OptionsMenu/ColorRect/CenterContainer"]
-margin_left = 71.0
-margin_top = 33.0
-margin_right = 281.0
-margin_bottom = 143.0
+margin_left = 73.0
+margin_top = 23.0
+margin_right = 278.0
+margin_bottom = 153.0
 grow_horizontal = 2
 grow_vertical = 2
 custom_constants/vseparation = 50
-custom_constants/hseparation = 150
+custom_constants/hseparation = 125
 columns = 2
 
-[node name="Battle_Entry" parent="Background/OptionsMenu/ColorRect/CenterContainer/GridContainer" instance=ExtResource( 3 )]
+[node name="Generic_Button" parent="Background/OptionsMenu/ColorRect/CenterContainer/GridContainer" instance=ExtResource( 7 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 0.0
-margin_right = 30.0
-margin_bottom = 30.0
+margin_right = 40.0
+margin_bottom = 40.0
 
-[node name="Battle_Entry2" parent="Background/OptionsMenu/ColorRect/CenterContainer/GridContainer" instance=ExtResource( 3 )]
+[node name="Generic_Button2" parent="Background/OptionsMenu/ColorRect/CenterContainer/GridContainer" instance=ExtResource( 7 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 180.0
+margin_left = 165.0
 margin_top = 0.0
-margin_right = 210.0
-margin_bottom = 30.0
+margin_right = 205.0
+margin_bottom = 40.0
 
-[node name="Battle_Entry3" parent="Background/OptionsMenu/ColorRect/CenterContainer/GridContainer" instance=ExtResource( 3 )]
+[node name="Generic_Button3" parent="Background/OptionsMenu/ColorRect/CenterContainer/GridContainer" instance=ExtResource( 7 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 80.0
-margin_right = 30.0
-margin_bottom = 110.0
+margin_top = 90.0
+margin_right = 40.0
+margin_bottom = 130.0
 
-[node name="Battle_Entry4" parent="Background/OptionsMenu/ColorRect/CenterContainer/GridContainer" instance=ExtResource( 3 )]
+[node name="Generic_Button4" parent="Background/OptionsMenu/ColorRect/CenterContainer/GridContainer" instance=ExtResource( 7 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 180.0
-margin_top = 80.0
-margin_right = 210.0
-margin_bottom = 110.0
+margin_left = 165.0
+margin_top = 90.0
+margin_right = 205.0
+margin_bottom = 130.0
 
 [node name="TileMap" type="TileMap" parent="Background/OptionsMenu/ColorRect"]
 tile_set = ExtResource( 2 )
@@ -165,7 +165,6 @@ margin_left = -728.0
 margin_top = -232.0
 margin_right = -32.0
 margin_bottom = -56.0
-popup_exclusive = true
 
 [node name="ColorRect" type="ColorRect" parent="Background/FightMenu"]
 anchor_right = 1.0
@@ -174,75 +173,128 @@ margin_left = 8.0
 
 [node name="CenterContainer" type="CenterContainer" parent="Background/FightMenu/ColorRect"]
 anchor_bottom = 1.0
-margin_right = 336.0
+margin_right = 375.0
 theme = SubResource( 1 )
 
 [node name="GridContainer" type="GridContainer" parent="Background/FightMenu/ColorRect/CenterContainer"]
-margin_left = 153.0
-margin_top = 13.0
-margin_right = 183.0
-margin_bottom = 163.0
+margin_left = 72.0
+margin_top = 23.0
+margin_right = 302.0
+margin_bottom = 153.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_constants/vseparation = 10
+custom_constants/vseparation = 50
+custom_constants/hseparation = 150
+columns = 2
 
-[node name="Battle_Entry" parent="Background/FightMenu/ColorRect/CenterContainer/GridContainer" instance=ExtResource( 3 )]
+[node name="Generic_Button" parent="Background/FightMenu/ColorRect/CenterContainer/GridContainer" instance=ExtResource( 7 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 0.0
-margin_right = 30.0
-margin_bottom = 30.0
+margin_right = 40.0
+margin_bottom = 40.0
 
-[node name="Button" parent="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Battle_Entry" index="0"]
-text = "Unkown"
+[node name="Generic_Button2" parent="Background/FightMenu/ColorRect/CenterContainer/GridContainer" instance=ExtResource( 7 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 190.0
+margin_top = 0.0
+margin_right = 230.0
+margin_bottom = 40.0
 
-[node name="Battle_Entry2" parent="Background/FightMenu/ColorRect/CenterContainer/GridContainer" instance=ExtResource( 3 )]
+[node name="Generic_Button3" parent="Background/FightMenu/ColorRect/CenterContainer/GridContainer" instance=ExtResource( 7 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 40.0
-margin_right = 30.0
-margin_bottom = 70.0
+margin_top = 90.0
+margin_right = 40.0
+margin_bottom = 130.0
 
-[node name="Button" parent="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Battle_Entry2" index="0"]
-text = "Unknown"
-
-[node name="Battle_Entry3" parent="Background/FightMenu/ColorRect/CenterContainer/GridContainer" instance=ExtResource( 3 )]
+[node name="Generic_Button4" parent="Background/FightMenu/ColorRect/CenterContainer/GridContainer" instance=ExtResource( 7 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 0.0
-margin_top = 80.0
-margin_right = 30.0
-margin_bottom = 110.0
-
-[node name="Button" parent="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Battle_Entry3" index="0"]
-text = "Unknown"
-
-[node name="Battle_Entry4" parent="Background/FightMenu/ColorRect/CenterContainer/GridContainer" instance=ExtResource( 3 )]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 0.0
-margin_top = 120.0
-margin_right = 30.0
-margin_bottom = 150.0
-
-[node name="Button" parent="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Battle_Entry4" index="0"]
-text = "Unknown"
+margin_left = 190.0
+margin_top = 90.0
+margin_right = 230.0
+margin_bottom = 130.0
 
 [node name="TileMap" type="TileMap" parent="Background/FightMenu/ColorRect"]
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 0, 0, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 1, 0, 13, 1, 0, 14, 1, 0, 15, 1, 0, 16, 1, 0, 17, 1, 0, 18, 1, 0, 19, 1, 0, 20, 1, 0, 21, 1, 0, 22, 1, 0, 23, 1, 0, 24, 1, 0, 25, 1, 0, 26, 1, 0, 27, 1, 0, 28, 1, 0, 29, 1, 0, 30, 1, 0, 31, 1, 0, 32, 1, 0, 33, 1, 0, 34, 1, 0, 35, 1, 0, 36, 1, 0, 37, 1, 0, 38, 1, 0, 39, 1, 0, 40, 1, 0, 41, 1, 0, 42, 2, 0, 65536, 7, 0, 65578, 3, 0, 131072, 7, 0, 131114, 3, 0, 196608, 7, 0, 196650, 3, 0, 262144, 7, 0, 262186, 3, 0, 327680, 7, 0, 327722, 3, 0, 393216, 7, 0, 393258, 3, 0, 458752, 7, 0, 458794, 3, 0, 524288, 7, 0, 524330, 3, 0, 589824, 7, 0, 589866, 3, 0, 655360, 6, 0, 655361, 5, 0, 655362, 5, 0, 655363, 5, 0, 655364, 5, 0, 655365, 5, 0, 655366, 5, 0, 655367, 5, 0, 655368, 5, 0, 655369, 5, 0, 655370, 5, 0, 655371, 5, 0, 655372, 5, 0, 655373, 5, 0, 655374, 5, 0, 655375, 5, 0, 655376, 5, 0, 655377, 5, 0, 655378, 5, 0, 655379, 5, 0, 655380, 5, 0, 655381, 5, 0, 655382, 5, 0, 655383, 5, 0, 655384, 5, 0, 655385, 5, 0, 655386, 5, 0, 655387, 5, 0, 655388, 5, 0, 655389, 5, 0, 655390, 5, 0, 655391, 5, 0, 655392, 5, 0, 655393, 5, 0, 655394, 5, 0, 655395, 5, 0, 655396, 5, 0, 655397, 5, 0, 655398, 5, 0, 655399, 5, 0, 655400, 5, 0, 655401, 5, 0, 655402, 4, 0 )
+tile_data = PoolIntArray( 0, 0, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 1, 0, 13, 1, 0, 14, 1, 0, 15, 1, 0, 16, 1, 0, 17, 1, 0, 18, 1, 0, 19, 1, 0, 20, 1, 0, 21, 1, 0, 22, 1, 0, 23, 2, 0, 24, 0, 0, 25, 1, 0, 26, 1, 0, 27, 1, 0, 28, 1, 0, 29, 1, 0, 30, 1, 0, 31, 1, 0, 32, 1, 0, 33, 1, 0, 34, 1, 0, 35, 1, 0, 36, 1, 0, 37, 1, 0, 38, 1, 0, 39, 1, 0, 40, 1, 0, 41, 1, 0, 42, 2, 0, 65536, 7, 0, 65559, 3, 0, 65560, 7, 0, 65578, 3, 0, 131072, 7, 0, 131095, 3, 0, 131096, 7, 0, 131114, 3, 0, 196608, 7, 0, 196631, 3, 0, 196632, 7, 0, 196650, 3, 0, 262144, 7, 0, 262167, 3, 0, 262168, 7, 0, 262186, 3, 0, 327680, 7, 0, 327703, 3, 0, 327704, 7, 0, 327722, 3, 0, 393216, 7, 0, 393239, 3, 0, 393240, 7, 0, 393258, 3, 0, 458752, 7, 0, 458775, 3, 0, 458776, 7, 0, 458794, 3, 0, 524288, 7, 0, 524311, 3, 0, 524312, 7, 0, 524330, 3, 0, 589824, 7, 0, 589847, 3, 0, 589848, 7, 0, 589866, 3, 0, 655360, 6, 0, 655361, 5, 0, 655362, 5, 0, 655363, 5, 0, 655364, 5, 0, 655365, 5, 0, 655366, 5, 0, 655367, 5, 0, 655368, 5, 0, 655369, 5, 0, 655370, 5, 0, 655371, 5, 0, 655372, 5, 0, 655373, 5, 0, 655374, 5, 0, 655375, 5, 0, 655376, 5, 0, 655377, 5, 0, 655378, 5, 0, 655379, 5, 0, 655380, 5, 0, 655381, 5, 0, 655382, 5, 0, 655383, 4, 0, 655384, 6, 0, 655385, 5, 0, 655386, 5, 0, 655387, 5, 0, 655388, 5, 0, 655389, 5, 0, 655390, 5, 0, 655391, 5, 0, 655392, 5, 0, 655393, 5, 0, 655394, 5, 0, 655395, 5, 0, 655396, 5, 0, 655397, 5, 0, 655398, 5, 0, 655399, 5, 0, 655400, 5, 0, 655401, 5, 0, 655402, 4, 0 )
+
+[node name="MoveDescLabel" type="RichTextLabel" parent="Background/FightMenu/ColorRect"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -272.0
+margin_top = -168.0
+margin_right = -32.0
+margin_bottom = -16.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_fonts/normal_font = ExtResource( 3 )
+
+[node name="ItemMenu" type="Popup" parent="Background"]
+visible = true
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -744.0
+margin_top = -231.0
+margin_right = -248.0
+margin_bottom = -24.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="Background/ItemMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+
+[node name="TileMap" type="TileMap" parent="Background/ItemMenu/ColorRect"]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 0, 0, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 1, 0, 13, 1, 0, 14, 1, 0, 15, 1, 0, 16, 1, 0, 17, 1, 0, 18, 1, 0, 19, 1, 0, 20, 1, 0, 21, 1, 0, 22, 1, 0, 23, 1, 0, 24, 1, 0, 25, 1, 0, 26, 1, 0, 27, 1, 0, 28, 1, 0, 29, 1, 0, 30, 2, 0, 65536, 7, 0, 65566, 3, 0, 131072, 7, 0, 131102, 3, 0, 196608, 7, 0, 196638, 3, 0, 262144, 7, 0, 262174, 3, 0, 327680, 7, 0, 327710, 3, 0, 393216, 7, 0, 393246, 3, 0, 458752, 7, 0, 458782, 3, 0, 524288, 7, 0, 524318, 3, 0, 589824, 7, 0, 589854, 3, 0, 655360, 7, 0, 655390, 3, 0, 720896, 7, 0, 720926, 3, 0, 786432, 6, 0, 786433, 5, 0, 786434, 5, 0, 786435, 5, 0, 786436, 5, 0, 786437, 5, 0, 786438, 5, 0, 786439, 5, 0, 786440, 5, 0, 786441, 5, 0, 786442, 5, 0, 786443, 5, 0, 786444, 5, 0, 786445, 5, 0, 786446, 5, 0, 786447, 5, 0, 786448, 5, 0, 786449, 5, 0, 786450, 5, 0, 786451, 5, 0, 786452, 5, 0, 786453, 5, 0, 786454, 5, 0, 786455, 5, 0, 786456, 5, 0, 786457, 5, 0, 786458, 5, 0, 786459, 5, 0, 786460, 5, 0, 786461, 5, 0, 786462, 4, 0 )
+
+[node name="MoveDescLabel" type="RichTextLabel" parent="Background/ItemMenu/ColorRect"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 521.0
+margin_bottom = 201.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_fonts/normal_font = ExtResource( 3 )
+
+[node name="CenterContainer" type="CenterContainer" parent="Background/ItemMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 15
+size_flags_vertical = 15
+
+[node name="GridContainer" type="GridContainer" parent="Background/ItemMenu/CenterContainer"]
+margin_left = 248.0
+margin_top = 103.0
+margin_right = 248.0
+margin_bottom = 103.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 4
 
 [node name="Player" type="Sprite" parent="Background"]
 position = Vector2( 192, 336 )
@@ -303,21 +355,36 @@ texture = ExtResource( 6 )
 [node name="SelectorTimer" type="Timer" parent="."]
 
 [connection signal="about_to_show" from="Background/OptionsMenu" to="." method="_on_OptionMenu_about_to_show"]
-[connection signal="pressed" from="Background/OptionsMenu/ColorRect/CenterContainer/GridContainer/Battle_Entry/Button" to="." method="_on_Button_pressed" binds= [ "options", 0 ]]
-[connection signal="pressed" from="Background/OptionsMenu/ColorRect/CenterContainer/GridContainer/Battle_Entry2/Button" to="." method="_on_Button_pressed" binds= [ "options", 1 ]]
-[connection signal="pressed" from="Background/OptionsMenu/ColorRect/CenterContainer/GridContainer/Battle_Entry3/Button" to="." method="_on_Button_pressed" binds= [ "options", 2 ]]
-[connection signal="pressed" from="Background/OptionsMenu/ColorRect/CenterContainer/GridContainer/Battle_Entry4/Button" to="." method="_on_Button_pressed" binds= [ "options", 3 ]]
+[connection signal="pressed" from="Background/OptionsMenu/ColorRect/CenterContainer/GridContainer/Generic_Button/PanelContainer/Button" to="." method="_on_Button_pressed" binds= [ "options", 0 ]]
+[connection signal="pressed" from="Background/OptionsMenu/ColorRect/CenterContainer/GridContainer/Generic_Button2/PanelContainer/Button" to="." method="_on_Button_pressed" binds= [ "options", 1 ]]
+[connection signal="pressed" from="Background/OptionsMenu/ColorRect/CenterContainer/GridContainer/Generic_Button3/PanelContainer/Button" to="." method="_on_Button_pressed" binds= [ "options", 2 ]]
+[connection signal="pressed" from="Background/OptionsMenu/ColorRect/CenterContainer/GridContainer/Generic_Button4/PanelContainer/Button" to="." method="_on_Button_pressed" binds= [ "options", 3 ]]
 [connection signal="about_to_show" from="Background/FightMenu" to="." method="_on_FightMenu_about_to_show"]
-[connection signal="pressed" from="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Battle_Entry/Button" to="." method="_on_Button_pressed" binds= [ "fight", 0 ]]
-[connection signal="pressed" from="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Battle_Entry2/Button" to="." method="_on_Button_pressed" binds= [ "fight", 1 ]]
-[connection signal="pressed" from="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Battle_Entry3/Button" to="." method="_on_Button_pressed" binds= [ "fight", 2 ]]
-[connection signal="pressed" from="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Battle_Entry4/Button" to="." method="_on_Button_pressed" binds= [ "fight", 3 ]]
+[connection signal="popup_hide" from="Background/FightMenu" to="." method="_on_FightMenu_popup_hide"]
+[connection signal="focus_entered" from="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Generic_Button" to="." method="_on_Generic_Button_focus_entered" binds= [ 0 ]]
+[connection signal="focus_entered" from="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Generic_Button/PanelContainer/Button" to="." method="_on_Button_focus_entered" binds= [ 0 ]]
+[connection signal="mouse_entered" from="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Generic_Button/PanelContainer/Button" to="." method="_on_Button_mouse_entered" binds= [ 0 ]]
+[connection signal="pressed" from="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Generic_Button/PanelContainer/Button" to="." method="_on_Button_pressed" binds= [ "fight", 0 ]]
+[connection signal="focus_entered" from="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Generic_Button2" to="." method="_on_Generic_Button_focus_entered" binds= [ 1 ]]
+[connection signal="focus_entered" from="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Generic_Button2/PanelContainer/Button" to="." method="_on_Button_focus_entered" binds= [ 1 ]]
+[connection signal="mouse_entered" from="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Generic_Button2/PanelContainer/Button" to="." method="_on_Button_mouse_entered" binds= [ 1 ]]
+[connection signal="pressed" from="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Generic_Button2/PanelContainer/Button" to="." method="_on_Button_pressed" binds= [ "fight", 1 ]]
+[connection signal="focus_entered" from="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Generic_Button3" to="." method="_on_Generic_Button_focus_entered" binds= [ 2 ]]
+[connection signal="focus_entered" from="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Generic_Button3/PanelContainer/Button" to="." method="_on_Button_focus_entered" binds= [ 2 ]]
+[connection signal="mouse_entered" from="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Generic_Button3/PanelContainer/Button" to="." method="_on_Button_mouse_entered" binds= [ 2 ]]
+[connection signal="pressed" from="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Generic_Button3/PanelContainer/Button" to="." method="_on_Button_pressed" binds= [ "fight", 2 ]]
+[connection signal="focus_entered" from="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Generic_Button4" to="." method="_on_Generic_Button_focus_entered" binds= [ 3 ]]
+[connection signal="focus_entered" from="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Generic_Button4/PanelContainer/Button" to="." method="_on_Button_focus_entered" binds= [ 3 ]]
+[connection signal="mouse_entered" from="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Generic_Button4/PanelContainer/Button" to="." method="_on_Button_mouse_entered" binds= [ 3 ]]
+[connection signal="pressed" from="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Generic_Button4/PanelContainer/Button" to="." method="_on_Button_pressed" binds= [ "fight", 3 ]]
+[connection signal="about_to_show" from="Background/ItemMenu" to="." method="_on_ItemMenu_about_to_show"]
+[connection signal="popup_hide" from="Background/ItemMenu" to="." method="_on_ItemMenu_popup_hide"]
 
-[editable path="Background/OptionsMenu/ColorRect/CenterContainer/GridContainer/Battle_Entry"]
-[editable path="Background/OptionsMenu/ColorRect/CenterContainer/GridContainer/Battle_Entry2"]
-[editable path="Background/OptionsMenu/ColorRect/CenterContainer/GridContainer/Battle_Entry3"]
-[editable path="Background/OptionsMenu/ColorRect/CenterContainer/GridContainer/Battle_Entry4"]
-[editable path="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Battle_Entry"]
-[editable path="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Battle_Entry2"]
-[editable path="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Battle_Entry3"]
-[editable path="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Battle_Entry4"]
+[editable path="Background/OptionsMenu/ColorRect/CenterContainer/GridContainer/Generic_Button"]
+[editable path="Background/OptionsMenu/ColorRect/CenterContainer/GridContainer/Generic_Button2"]
+[editable path="Background/OptionsMenu/ColorRect/CenterContainer/GridContainer/Generic_Button3"]
+[editable path="Background/OptionsMenu/ColorRect/CenterContainer/GridContainer/Generic_Button4"]
+[editable path="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Generic_Button"]
+[editable path="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Generic_Button2"]
+[editable path="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Generic_Button3"]
+[editable path="Background/FightMenu/ColorRect/CenterContainer/GridContainer/Generic_Button4"]
